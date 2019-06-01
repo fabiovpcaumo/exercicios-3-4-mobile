@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final LoginService ls = new LoginService(getApplicationContext());
+        final LoginService ls = new LoginService(this);
 
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -30,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TO-DO Login
-                ls.doLogin(usernameInput.getText().toString(), passwordInput.getText().toString());
+                if(ls.doLogin(usernameInput.getText().toString(), passwordInput.getText().toString())){
+
+                };
+
             }
         });
 
