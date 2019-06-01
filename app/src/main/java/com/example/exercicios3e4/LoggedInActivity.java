@@ -33,7 +33,5 @@ public class LoggedInActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }
