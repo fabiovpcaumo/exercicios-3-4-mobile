@@ -1,6 +1,5 @@
 package com.example.exercicios3e4;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.exercicios3e4.services.FirulaService;
@@ -83,9 +81,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        System.out.println(requestCode);
-        System.out.println(resultCode);
-
         if (requestCode == IS_ACCOUNT_DATA_FULFILLED && resultCode == RESULT_OK){
             isAccountDataFulfilled.setChecked(true);
         }
