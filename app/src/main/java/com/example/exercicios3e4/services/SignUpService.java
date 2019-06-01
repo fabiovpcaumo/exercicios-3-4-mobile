@@ -12,11 +12,11 @@ public class SignUpService {
 
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-    Context _context;
+    Context context;
 
     public SignUpService(Context context){
-        this._context = context;
-        pref = _context.getSharedPreferences(constants.getPrefFile(), constants.getPrivateMode());
+        this.context = context;
+        pref = context.getSharedPreferences(constants.getPrefFile(), constants.getPrivateMode());
         editor = pref.edit();
 
     }
@@ -25,6 +25,6 @@ public class SignUpService {
         editor.putString("username", username);
         editor.putString("password", password);
         editor.commit();
-        Toast.makeText(_context, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT);
+        Toast.makeText(context, "Usuário cadastrado com sucesso", Toast.LENGTH_SHORT).show();
     }
 }

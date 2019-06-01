@@ -2,10 +2,13 @@ package com.example.exercicios3e4.services;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.example.exercicios3e4.services.SessionManager;
 import com.example.exercicios3e4.services.utils.ConstantsUtil;
+
+import org.w3c.dom.Text;
 
 public class LoginService {
     private Context context;
@@ -25,15 +28,17 @@ public class LoginService {
     public boolean doLogin(String username, String password){
         if(sm.checkLogin()) return true;
 
-        if(username == pref.getString("username", null)){
-           if(password == pref.getString("password", null)){
-               Toast.makeText(context, "Usuário logado com sucesso.", Toast.LENGTH_SHORT);
-               sm.createLoginSession(username, password);
-               return true;
-           }
+        String expectedUsername = pref.getString("username", null);
+        String expectedPassword = pref.getString("password", null);
+
+        if(TextUtils.equals(username, expectedUsername) && TextUtils.equals(password, expectedPassword)){
+           Toast.makeText(context, "Usuário logado com sucesso.", Toast.LENGTH_SHORT).show();
+           sm.createLoginSession(username, password);
+           return true;
         }
-            Toast.makeText(context, "Usuário ou senha incorretos.", Toast.LENGTH_SHORT);
-            return false;
+
+        Toast.makeText(context, "Usuário ou senha incorretos.", Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
 

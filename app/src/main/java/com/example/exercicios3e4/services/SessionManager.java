@@ -2,6 +2,8 @@ package com.example.exercicios3e4.services;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
 import com.example.exercicios3e4.services.utils.ConstantsUtil;
 
 public class SessionManager {
@@ -28,7 +30,22 @@ public class SessionManager {
     }
 
     public boolean checkLogin(){
-        if(pref.getBoolean("isLoggedIn", false)) return true;
+        return pref.getBoolean("isLoggedIn", false);
+    }
+
+    public String getLoggedUsername(){
+        return pref.getString("loggedUsername", null);
+    }
+
+    public boolean doLogoff(){
+        if (checkLogin()) {
+            editor.putBoolean("isLoggedIn", false);
+            editor.putString("loggedUsername", null);
+            editor.putString("loggedPassword", null);
+            editor.commit();
+            Toast.makeText(context, "Logging off...", Toast.LENGTH_SHORT).show();
+            return true;
+        }
         return false;
     }
 }
